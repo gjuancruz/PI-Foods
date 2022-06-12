@@ -18,7 +18,7 @@ router.get('/', async (req, res)=>{
             res.status(200).json(allRecipes)
         }
     }catch(err){
-        res.send(err)
+        console.log(err)
     }
 })
 

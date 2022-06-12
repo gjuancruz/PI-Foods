@@ -1,0 +1,41 @@
+
+
+/* aaaaaaa */
+.estylo{
+    background-color: rgb(253, 242, 230);
+      
+    border-radius: 5%;
+    border-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 5%;
+    text-align: center;
+    min-block-size: 400px;
+    min-width: 200px;
+    max-height: 400px;
+    box-shadow: 3px 2px 60px 25px;
+}
+
+.img{
+    
+    width: 14.5rem;
+    height: 200;
+    border-radius: 10px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.199);
+    border-width: 1px;
+    margin: 10%;
+}
+
+.titletext{
+    width:50%;
+    font-size: 20px;
+    margin-top: -5%;
+}
+
+.diettext{
+    font-size: 15px;
+}

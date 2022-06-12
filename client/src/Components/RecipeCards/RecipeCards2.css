@@ -1,0 +1,16 @@
+.container{
+    width: 350px;
+    margin: 20px;
+	border: 1px solid rgb(110, 110, 110);
+    border-radius: 5px;
+    
+}
+
+.titletext{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
