@@ -44,23 +44,22 @@ router.get('/:idRecipe', async (req, res)=>{
 })
 
 router.post('/', async(req, res)=>{
-    
-    // if(!id || !title || !summary || !healthScore || !steps || !image){
-    //     return res.status(404).send('Falta enviar datos obligatorios')
-    // }
+  
     try{
-        const { title, summary, healthScore, diet, steps, image} = req.body
+        let { title, summary, healthScore, diets, steps, image} = req.body
         
         const createdRecipe = await Recipe.create({
             title: title,
             summary: summary,
             healthScore: healthScore,
-            diet: diet,
             steps: steps,
-            image: image
+            image: image, 
+
         })
-        res.send('recipe')
-        return createdRecipe
+
+        await diets.map(diet => createdRecipe.addDiet(diet))
+        res.status(201).send('recipe')
+        
     }catch(error){
         console.log(error)
     }

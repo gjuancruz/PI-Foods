@@ -1,0 +1,10 @@
+.text{
+    text-decoration: none;
+}
+
+.recipeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-decoration: none;
+}

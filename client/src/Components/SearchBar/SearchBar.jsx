@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch } from "react-redux";
 import { searchRecipesAct } from '../../redux/actions';
-import './SearchBar.css'
+import styles from './SearchBar.module.css'
 const SearchBar = () => {
     
     const [state, setState]= React.useState({
@@ -28,7 +28,7 @@ const SearchBar = () => {
             placeholder="Recipe..."
             name='name'
           />
-          <input type="submit" value="Search" className='btn'/>
+          <input type="submit" value="Search" className={styles.btn}/>
         </div>
         </form>
       );

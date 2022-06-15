@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import './LandingPage.css'
+import styles from './LandingPage.module.css'
 
 
 
 const Landing = ()=> {
 
     return(
-            <div className='container'>
-                <div className='box'>
+            <div className={styles.container}>
+                <div className={styles.box}>
                     <h1>APPetite</h1>
                     <Link to ='/recipes'>
-                    <button className = 'button' >Start</button>
+                    <button className = {styles.button} >Start</button>
                     </Link>
                 </div>
             </div>

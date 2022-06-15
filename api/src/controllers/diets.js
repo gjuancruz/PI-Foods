@@ -5,7 +5,7 @@ const { API_KEY } = process.env;
 
 async function dietsCreate(){
     try{
-    const diets = await Diet.bulkCreate([
+    await Diet.bulkCreate([
         {diets: 'Gluten Free'},
         {diets: 'Ketogenic'},
         {diets: 'Vegetarian'},
@@ -16,7 +16,7 @@ async function dietsCreate(){
         {diets: 'Paleo'},
         {diets: 'Primal'},
         {diets: 'Low FODMAP'},
-        {diets: 'Whole30'},
+        {diets: 'Whole30'}
     ])
 }catch(err){
     console.log(err)

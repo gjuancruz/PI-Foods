@@ -5,7 +5,7 @@ const {Diet}= require('../models/Diet');
 
 router.get('/', async(req, res)=>{
     try{
-    await dietsCreate()
+    const createdDiets = await dietsCreate()
     const dietsResult = await dietsList()
     res.status(200).send(dietsResult)
     }catch(err){

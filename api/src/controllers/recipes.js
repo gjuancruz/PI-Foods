@@ -1,4 +1,4 @@
-const {Recipe} = require('../db')
+const {Recipe, Diet} = require('../db')
 const axios = require("axios")
 require('dotenv').config()
 const {API_KEY} = process.env
@@ -10,9 +10,9 @@ async function getAPIRecipes(){
         return{
         id: e.id,
         title: e.title,
-        summary: e.summary,
+        summary: e.summary.replaceAll(/<(“[^”]”|'[^’]’|[^'”>])*>/g, ''),
         healthScore: e.healthScore,
-        diet: e.diets.map(each=>({dietType: each}) ),
+        diets: e.diets.map(each => ({diets: each})),
         steps: e.analyzedInstructions[0]?.steps.map(each => { return each.step }),
         image: e.image
         }
@@ -24,11 +24,15 @@ async function getAPIRecipes(){
 }
 
 async function getDBRecipes(){
-    try {
-        return await Recipe.findAll()
-    } catch (error) {
-        console.log(error)
-    }
+    return await Recipe.findAll({
+        include: {
+            model: Diet,
+            attributes: ["diets"],
+            through: {
+                attributes: []
+            } 
+        }
+     })
 }
 
 async function getAllRecipes(){

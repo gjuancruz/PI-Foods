@@ -1,13 +1,13 @@
 import React from 'react';
-import './RecipeCards.css'
+import styles from './RecipeCards.module.css'
 const RecipeCards = (props) =>{
 
     return(
-        <div className='container'>
-            <div className='estylo'>
-                <img className='img' src={props.image} alt='recipe img'/>
-                <h1 className='titletext'>{props.title}</h1>
-                <p className='diettext'>{props.diet}</p>
+        <div className={styles.container}>
+            <div className={styles.estylo}>
+                <img className={styles.img} src={props.image} alt='recipe img'/>
+                <h1 className={styles.titletext}>{props.title}</h1>
+                <p className={styles.diettext}>{props.diets}</p>
             </div>
         </div>
     )
