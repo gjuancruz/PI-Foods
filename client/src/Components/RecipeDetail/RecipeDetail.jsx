@@ -18,14 +18,14 @@ const RecipeDetail = ()=>{
         {detailRecipe && detailRecipe.map(d=>
         <div key={1} className={styles.container}>
             <div className={styles.box}>
-            <h1>{detailRecipe[0].title}</h1>
-            <img className={styles.img} src={detailRecipe[0].image} />
-            <h3>HealthScore: {detailRecipe[0].healthScore}</h3>
-            <p>This recipe is <b>{detailRecipe[0].diets.map(d => d.diets).join(', ')}</b>.</p>
+            <h1>{d.title}</h1>
+            <img className={styles.img} src={d.image} />
+            <h3>HealthScore: {d.healthScore}</h3>
+            <p>This recipe is <b>{d.diets.map(d => d.diets).join(', ')}</b>.</p>
             <h2>Summary</h2>
-            <p className={styles.text}>{detailRecipe[0].summary}</p>
+            <p className={styles.text}>{d.summary}</p>
             <h2>¿How to prepare?</h2>
-            {(detailRecipe[0].steps ?  detailRecipe[0].steps.map(s =>
+            {(d.steps ?  d.steps.map(s =>
                 <p className={styles.text}>{s}</p>) : <p>Steps not available.</p>)}
             </div>
         </div>)

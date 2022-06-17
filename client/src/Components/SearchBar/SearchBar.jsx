@@ -22,8 +22,7 @@ const SearchBar = () => {
     return (
         <form  onSubmit={(event)=>handleSubmit(event)} >
           <div>
-          <input onChange={(event) => handleChange(event)}
-            className=''
+          <input className={styles.input} onChange={(event) => handleChange(event) }
             type="text"
             placeholder="Recipe..."
             name='name'

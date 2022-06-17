@@ -43,7 +43,7 @@ router.get('/:idRecipe', async (req, res)=>{
     }
 })
 
-router.post('/', async(req, res)=>{
+router.post('/create', async(req, res)=>{
   
     try{
         let { title, summary, healthScore, diets, steps, image} = req.body

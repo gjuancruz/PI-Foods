@@ -6,6 +6,7 @@ import NavBar from "./Components/NavBar/NavBar"
 import {BrowserRouter, Route} from 'react-router-dom'
 import DietCards from './Components/DietDetail/DietDetail'
 import RecipeDetail from './Components/RecipeDetail/RecipeDetail'
+import CreateRecipe from './Components/RecipeCreate/RecipeCreate'
 
 function App(){
   return(
@@ -15,7 +16,7 @@ function App(){
         <Route exact path='/recipes' component={RecipeCards} />
         <Route path='/diets' component={DietCards} />
         <Route exact path="/recipes/:id" component={RecipeDetail}/>
-
+        <Route exact path="/create" component={CreateRecipe}/>
     </BrowserRouter>
   )
 }

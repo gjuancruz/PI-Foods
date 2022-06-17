@@ -3,6 +3,8 @@ export const GET_ALL_RECIPES = 'GET_ALL_RECIPES'
 export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const GET_ALL_DIETS = 'GET_ALL_DIETS'
 export const SEARCH_RECIPES_ID = 'SEARCH_RECIPES_ID'
+export const ORDER_BY_TITLE = 'ORDER_BY_TITLE'
+export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE'
 
 export function getAllRecipesAct(){
     return async function (dispatch) {
@@ -41,5 +43,37 @@ export function searchRecipesIdAct(id){
         type: SEARCH_RECIPES_ID,
         payload: json.data
       })
+  }
+}
+
+export function postRecipe(payload){
+  return async function(){
+      try {
+          var json = await axios.post(`http://localhost:3001/recipes/create`, payload)
+          return json
+      } catch (error) {
+          console.log(error)
+      }
+  }
+}
+
+export function orderByTitle(payload){
+  return {
+      type: ORDER_BY_TITLE,
+      payload
+  }
+}
+
+export function orderByHealthScore(payload){
+  return {
+      type: ORDER_BY_HEALTHSCORE,
+      payload
+  }
+}
+
+export function filterByDiet(payload){ 
+  return {
+      type: "FILTERED_BY_DIETS",
+      payload
   }
 }

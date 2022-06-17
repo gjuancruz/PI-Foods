@@ -3,8 +3,13 @@
 }
 
 .recipeContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    text-decoration: none;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 500px;
+    margin-left: 2.5%;
+}
+
+.margen{
+    margin-top: 50px;
 }
