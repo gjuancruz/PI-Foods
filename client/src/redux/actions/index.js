@@ -5,6 +5,8 @@ export const GET_ALL_DIETS = 'GET_ALL_DIETS'
 export const SEARCH_RECIPES_ID = 'SEARCH_RECIPES_ID'
 export const ORDER_BY_TITLE = 'ORDER_BY_TITLE'
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE'
+export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
+
 
 export function getAllRecipesAct(){
     return async function (dispatch) {
@@ -73,7 +75,7 @@ export function orderByHealthScore(payload){
 
 export function filterByDiet(payload){ 
   return {
-      type: "FILTERED_BY_DIETS",
+      type: FILTER_BY_DIETS,
       payload
   }
 }

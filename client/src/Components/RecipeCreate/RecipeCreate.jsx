@@ -4,6 +4,33 @@ import { useDispatch , useSelector } from "react-redux"
 import { postRecipe } from "../../redux/actions";
 import { getAllDietsAct } from '../../redux/actions';
 import {Link} from 'react-router-dom'
+
+function validate(post){
+    let errors = {}
+    if(!post.title){
+        errors.title = 'You must name your recipe.'
+    }
+    if(post.title.length > 40){
+        errors.title = 'Your recipe name is too long.'
+    }
+    if(!/^[a-zA-Z\s]*$/.test(post.title)){
+        errors.title = 'Recipe name can not contain numbers or special characters.'
+    }
+    if(! /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(post.image)){
+        errors.image = 'You must enter a valid URL for the recipe image.'
+    }
+    if(!post.diets.length){
+        errors.diets = 'You must select at least one diet type.'
+    }
+    if(!post.summary){
+        errors.summary = 'You must add a summary to your recipe.'
+    }
+    if(post.steps === []){
+        errors.steps = 'You must add steps to your recipe.'
+    }
+return errors
+}
+
 const CreateRecipe = ()=>{
 
     const dispatch = useDispatch()
@@ -14,6 +41,7 @@ const CreateRecipe = ()=>{
 
     
     const allDiets = useSelector(state=> state.diets)
+    const [errors, setErrors] = useState({})
     
     const [post, setPost] = useState({
         title: "",
@@ -24,22 +52,39 @@ const CreateRecipe = ()=>{
         diets: []  
     })
 
+    
+
+
     function handleChange(e){
         setPost({
             ...post,
             [e.target.name]: e.target.value
         })
+        setErrors(validate({
+            ...post,
+            [e.target.name]: e.target.value
+          }));
     }
 
     
 
     function handleClick(e){
-        
+        if(e.target.checked === true){
             setPost({
                 ...post,
                 diets: [...post.diets, e.target.value]
             })
-
+        }
+        if (e.target.checked === false){
+            const index = post.diets.indexOf(e.target.value)
+            
+            post.diets.splice((index + 1))
+            // setPost({
+            //     ...post,
+            //     diets: post.diets.splice((index + 1))
+            // })
+            
+        }
         console.log(e.target.value)
     }
 
@@ -94,7 +139,10 @@ const CreateRecipe = ()=>{
 
         <div>
             <label>Recipe name:</label>
-            <input  type="text" value={post.title} name="title" onChange={(e) => handleChange(e)}/>
+            <input  type="text" value={post.title} name="title" onChange={(e) => handleChange(e)} />
+            {errors.title &&(
+            <p>{errors.title}</p>
+            )}
         </div>
 
         <br/>
@@ -108,7 +156,9 @@ const CreateRecipe = ()=>{
         <div>
         <label>Recipe image URL:</label>
         <input  type="text" value={post.image} name="image" onChange={(e) => handleChange(e)}/>
-        
+        {errors.image &&(
+            <p>{errors.image}</p>
+            )}
         </div>
 
         <br/>
@@ -118,25 +168,31 @@ const CreateRecipe = ()=>{
         {allDiets?.map(diets=>
         <div>
             <label>{diets.diets}</label>
-            <input type="checkbox"  value={diets.id} key={diets.id} onClick={(e) => handleClick(e)}></input>
+            <input type="checkbox"  value={diets.id} key={diets.id} onChange={(e) => handleClick(e)}></input>
             </div>
             )}
         </div>
-
+        {errors.diets &&(
+            <p>{errors.diets}</p>
+            )}
         <div>
         <br/>
         <label>Summary:</label>
         <br/>
         <textarea rows="4" cols="50" value={post.summary} name="summary" maxLength="1000" onChange={(e) => handleChange(e)}></textarea>
         </div>
-
+        {errors.summary &&(
+            <p>{errors.summary}</p>
+            )}
         <div>
         <br/>
         <label>Steps</label>
         <br/>
         <textarea rows="4" cols="50" type='text' value={post.steps} name="steps" maxLength="1000" onChange={(e) => handleStepsChange(e)}></textarea>
         {/* <button type='button'  value={post.steps} onClick={(e) => handleAdd(e)}></button> */}
-        
+        {errors.steps &&(
+            <p>{errors.steps}</p>
+            )}
         </div>
             
         <button type="submit" onClick={(e) => handleSubmit(e)}>Create Recipe</button>
