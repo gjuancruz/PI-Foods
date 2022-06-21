@@ -3,7 +3,7 @@ import styles from './RecipeCreate.module.css'
 import { useDispatch , useSelector } from "react-redux"
 import { getAllRecipesAct, postRecipe } from "../../redux/actions";
 import { getAllDietsAct } from '../../redux/actions';
-import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 function validate(post){
     let errors = {}
@@ -115,7 +115,7 @@ const CreateRecipe = ()=>{
 
     
     let titlecomprobation = 0
-
+    let history = useHistory()
     function handleSubmit(e){
         if(!post.title){
             e.preventDefault()
@@ -142,7 +142,6 @@ const CreateRecipe = ()=>{
                 e.preventDefault()
                 return alert("That recipe title already exists.")
             }else{
-                e.preventDefault()
                 dispatch(postRecipe(post))
                     alert("Recipe sucessfully created! You can now visualize it in the recipes page.")
                     setPost({
@@ -153,7 +152,9 @@ const CreateRecipe = ()=>{
                         steps: "",
                         image: "",
                         diets: []
-                })}
+                })
+            history.push('/recipes')
+            }
             
         }
         console.log(post)
