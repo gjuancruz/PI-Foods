@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     summary:{
       type: DataTypes.STRING(1000),

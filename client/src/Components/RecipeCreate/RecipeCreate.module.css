@@ -1,4 +1,32 @@
 .container{
 margin-top: 50px;
-color:aliceblue
+color:black;
+display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction:column;
+      background-color: rgba(240, 248, 255, 0.986);
+      border: 33%;
+      border-style:groove;
+    border-radius: 5%;
+    border-color: black;
+    width: 1000px;
+  margin-top: 100px;
+  margin-left: 165px;
+  box-shadow: 3px 2px 60px 25px;
+}
+
+
+.urldanger{
+    color:black;
+    font-size: 12px;
+}
+
+.danger {
+    color: red;
+    font-size: 12px;
+  }
+
+.labeltitles{
+    font-weight: bold;
 }

@@ -11,7 +11,7 @@ const RecipePage = ()=>{
     
     React.useEffect(()=>{
         dispatch(getAllRecipesAct())
-    }, [])
+    }, [dispatch])
     
     React.useEffect(()=>{
         dispatch(getAllDietsAct())

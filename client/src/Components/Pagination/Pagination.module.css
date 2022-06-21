@@ -1,0 +1,21 @@
+.pagination{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-left: 46%;
+    padding: 10px;
+}
+
+button{
+    border-color: rgba(169, 169, 169, 0.877);
+    background-color: rgba(240, 248, 255, 0.849);
+    border-radius: 5%;
+
+}
+
+button:hover{
+    border-color: rgba(0, 0, 0, 0.877);
+    background-color: rgba(240, 248, 255, 0.979);
+    border-radius: 5%;
+    
+}

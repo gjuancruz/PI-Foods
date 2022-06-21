@@ -36,6 +36,13 @@ const initialState = {
 
         case ORDER_BY_TITLE:
             let sortedRecipesTitle
+            if(action.payload === ""){
+              return{
+                ...state,
+                recipes: [...state.recipescopy]
+              }
+            }
+
             if(action.payload === "Asc"){
               sortedRecipesTitle =  state.recipes.sort(function( a , b ) {
                     if(a.title.toLowerCase() > b.title.toLowerCase()){
