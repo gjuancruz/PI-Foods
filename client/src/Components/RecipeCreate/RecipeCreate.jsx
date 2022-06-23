@@ -28,7 +28,7 @@ function validate(post){
     if(!post.summary){
         errors.summary = 'You must add a summary to your recipe.'
     }
-    if(!post.steps){
+    if(!post.steps.length){
         errors.steps = 'You must add steps to your recipe.'
     }
 return errors
@@ -88,10 +88,6 @@ const CreateRecipe = ()=>{
             const index = post.diets.indexOf(e.target.value)
             
             post.diets.splice((index), 1)
-            // setPost({
-            //     ...post,
-            //     diets: post.diets.splice((index + 1))
-            // })
             
         }
         console.log(e.target.value)
@@ -120,13 +116,19 @@ const CreateRecipe = ()=>{
         if(!post.title){
             e.preventDefault()
             return alert("Recipe needs a title.")
-        } 
-        else if(!post.summary){
+        }
+        if(post.title.length > 40){
             e.preventDefault()
-            return alert("Recipe needs a summary.")
+            return alert("Your recipe's name is too long")
         }else if(!post.diets.length){
             e.preventDefault()
             return alert("Add at least one diet type for your recipe.")
+        } else if(!post.summary){
+            e.preventDefault()
+            return alert("Recipe needs a summary.")
+        } else if(!post.steps[0]){
+            e.preventDefault()
+            return alert("Recipe needs a step by step.")
         } else {
             if (!post.image) {
                 post.image = "https://i.pinimg.com/originals/42/c3/a5/42c3a54a0ecec681b21fe32607359be2.jpg"
@@ -217,7 +219,7 @@ const CreateRecipe = ()=>{
         <label className={styles.labeltitles}>Steps:</label>
         <br/>
         <textarea rows="4" cols="50" type='text' value={post.steps} name="steps" maxLength="1000" onChange={(e) => handleStepsChange(e)}></textarea>
-        {/* <button type='button'  value={post.steps} onClick={(e) => handleAdd(e)}></button> */}
+        
         {errors.steps &&(
             <p className={styles.danger}>{errors.steps}</p>
             )}

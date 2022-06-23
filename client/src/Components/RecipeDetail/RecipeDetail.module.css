@@ -33,3 +33,9 @@ box-shadow: 3px 2px 60px 25px;
   border-color: rgba(0, 0, 0, 0.199);
   border-width: 1px;
 }
+
+.arrow{
+  width:60px;
+  height:60px;
+  margin-right:85%;
+}

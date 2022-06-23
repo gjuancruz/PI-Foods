@@ -11,7 +11,7 @@ const RecipePage = ()=>{
     
     React.useEffect(()=>{
         dispatch(getAllRecipesAct())
-    }, [dispatch])
+    }, [])
     
     React.useEffect(()=>{
         dispatch(getAllDietsAct())
@@ -33,21 +33,28 @@ const RecipePage = ()=>{
 function handleSortTitle(e){
     e.preventDefault(e)
     dispatch(orderByTitle(e.target.value))
+    setPage(1)
 }
 
 function handleSortHealthScore(e){
     e.preventDefault(e)
     dispatch(orderByHealthScore(e.target.value))
+    setPage(1)
 }
 
 function handleDietFilter(e){
     e.preventDefault(e)
     dispatch(filterByDiet(e.target.value))
+    setPage(1)
+}
+
+function notFound(){
+    return <h1>aa</h1>
 }
 
 return(
-    
     <div >
+        
          <div className={styles.margen}>
                     <select onChange={(e) => handleSortTitle(e)}>
                         <option value="" >Filter alphabetically</option>
@@ -80,8 +87,10 @@ return(
         <div>
             <Paginacion page={page} setPage={setPage} maxrecipes = {maxrecipes} recipeslength = {recipeslength} perPage={perPage}/>
         </div>
+        {!recipes.length && <h1>Not found</h1>}
     </div>
     )
 }
+
 
 export default RecipePage

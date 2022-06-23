@@ -71,6 +71,12 @@ const initialState = {
         }
 
         case ORDER_BY_HEALTHSCORE:
+          if(action.payload === ""){
+            return{
+              ...state,
+              recipes: [...state.recipescopy]
+            }
+          }
           let sortedRecipesHealth
           if(action.payload === "maxmin"){
             sortedRecipesHealth = state.recipes.sort(function( a , b ) {
@@ -111,6 +117,8 @@ const initialState = {
             ...state,
             recipes: filter
         }
+
+       
         default: return state
       }
   }

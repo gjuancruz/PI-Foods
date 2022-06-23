@@ -6,7 +6,7 @@ export const SEARCH_RECIPES_ID = 'SEARCH_RECIPES_ID'
 export const ORDER_BY_TITLE = 'ORDER_BY_TITLE'
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE'
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
-
+export const DELETE_RECIPE = 'DELETE_RECIPE'
 
 export function getAllRecipesAct(){
     return async function (dispatch) {
@@ -20,11 +20,18 @@ export function getAllRecipesAct(){
 
 export function searchRecipesAct(title){
   return async function (dispatch) {
+    try {
       var jsonn = await axios.get(`http://localhost:3001/recipes?name=${title}`)
       return dispatch({
         type: SEARCH_RECIPES,
         payload: jsonn.data
       })
+    } catch (error) {
+      dispatch({
+        type: SEARCH_RECIPES,
+        payload: []
+      })
+    }
   }
 }
 

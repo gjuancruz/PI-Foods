@@ -24,11 +24,9 @@ const SearchBar = () => {
         event.preventDefault()
         if(location !== '/recipes'){
           history.push('/recipes')
-          setTimeout(dispatch(searchRecipesAct(state)), 5000)
+          event.preventDefault()
+          setTimeout(() =>dispatch(searchRecipesAct(state)), 500)
           
-          setState('')
-        }else{
-          dispatch(searchRecipesAct(state))
           setState('')
         }
     }
