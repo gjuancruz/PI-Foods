@@ -12,13 +12,14 @@
     align-items: center;
     flex-direction: column;
     width: 400px;
-    margin-top: 15%;
+    margin-top: 10%;
     text-align: center;
     min-block-size: 400px;
     min-width: 200px;
     max-height: 400px;
     box-shadow: 3px 2px 60px 25px;
     color:black;
+    transition: transform .2s;
     text-decoration: none !important;
     outline: none !important;
 }
@@ -43,4 +44,8 @@
 
 .diettext{
     font-size: 15px;
+}
+
+.estylo:hover{
+    transform: scale(1.1)
 }

@@ -5,7 +5,7 @@ const DietCards = (props) =>{
 
     return(
         <div className={styles.dietstext}>
-            <h1>{props.diets}</h1>   
+            <h3>{props.diets}</h3>   
         </div>
     )
 }

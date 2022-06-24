@@ -20,7 +20,7 @@ function validate(post){
         errors.image = 'You can add a URL image for your recipe (optional).'
     }
     if(post.image && ! /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(post.image)){
-        errors.image = 'You must enter a valid URL for the recipe image.'
+        errors.image = 'You must enter a valid URL for the recipe image. Else, a default one will be set.'
     }
     if(!post.diets.length){
         errors.diets = 'You must select at least one diet type.'
@@ -40,12 +40,10 @@ const CreateRecipe = ()=>{
 
     React.useEffect(()=>{
         dispatch(getAllDietsAct())
-        return
     }, [])
 
     React.useEffect(()=>{
         dispatch(getAllRecipesAct())
-        return
     }, [])
     
     const allDiets = useSelector(state=> state.diets)
@@ -101,13 +99,6 @@ const CreateRecipe = ()=>{
         })
     }
 
-    function handleAdd(e){
-        e.preventDefault()
-        setPost({
-            ...post,
-            steps: [...post.steps, e.target.value]
-        })
-    }
 
     
     let titlecomprobation = 0
@@ -120,6 +111,11 @@ const CreateRecipe = ()=>{
         if(post.title.length > 40){
             e.preventDefault()
             return alert("Your recipe's name is too long")
+        
+        }
+        if(post.title && !/^[a-zA-Z\s]*$/.test(post.title)){
+            e.preventDefault()
+            return alert('Recipe name can not contain numbers or special characters.')
         }else if(!post.diets.length){
             e.preventDefault()
             return alert("Add at least one diet type for your recipe.")
@@ -130,10 +126,10 @@ const CreateRecipe = ()=>{
             e.preventDefault()
             return alert("Recipe needs a step by step.")
         } else {
-            if (!post.image) {
+            if (!post.image || post.image && ! /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(post.image)) {
                 post.image = "https://i.pinimg.com/originals/42/c3/a5/42c3a54a0ecec681b21fe32607359be2.jpg"
             }
-            
+        
 
             (recipes.map(r =>
                 {if(r.title === post.title){
@@ -197,7 +193,7 @@ const CreateRecipe = ()=>{
         <br/>
         <div>
         {allDiets?.map(diets=>
-        <div>
+        <div key = {diets.id}>
             <label>{diets.diets}</label>
             <input type="checkbox"  value={diets.id} key={diets.id} onChange={(e) => handleClick(e)}></input>
             </div>

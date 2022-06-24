@@ -71,9 +71,13 @@ return(
                     <select onChange={(e) => handleDietFilter(e)}>
                         <option value=''>Filter by diet type</option>
                     {diets && diets.map(d=>
-                        <option value={d.diets}>{d.diets}</option>)}
+                        <option key={d.id} value={d.diets}>{d.diets}</option>)}
                     </select>
         </div>
+        <div>
+            <Paginacion page={page} setPage={setPage} maxrecipes = {maxrecipes} recipeslength = {recipeslength} perPage={perPage}/>
+        </div>
+
         <div className={styles.recipeContainer}>
         {recipes && recipes.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map(r =>
             <div  key ={r.id}>
