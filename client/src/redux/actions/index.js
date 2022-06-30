@@ -12,7 +12,7 @@ export const FILTER_BY_CREATED = 'FILTER_BY_CREATED'
 
 export function getAllRecipesAct(){
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/recipes");
+        var json = await axios.get("/recipes");
         return dispatch({
           type: GET_ALL_RECIPES,
           payload: json.data,
@@ -23,7 +23,7 @@ export function getAllRecipesAct(){
 export function searchRecipesAct(title){
   return async function (dispatch) {
     try {
-      var jsonn = await axios.get(`http://localhost:3001/recipes?name=${title}`)
+      var jsonn = await axios.get(`/recipes?name=${title}`)
       return dispatch({
         type: SEARCH_RECIPES,
         payload: jsonn.data
@@ -39,7 +39,7 @@ export function searchRecipesAct(title){
 
 export function getAllDietsAct(){
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/diets");
+    var json = await axios.get("/diets");
     return dispatch({
       type: GET_ALL_DIETS,
       payload: json.data,
@@ -49,7 +49,7 @@ export function getAllDietsAct(){
 
 export function searchRecipesIdAct(id){
   return async function (dispatch) {
-      var json = await axios.get(`http://localhost:3001/recipes/${id}`)
+      var json = await axios.get(`/recipes/${id}`)
       return dispatch({
         type: SEARCH_RECIPES_ID,
         payload: json.data
@@ -60,7 +60,7 @@ export function searchRecipesIdAct(id){
 export function postRecipe(payload){
   return async function(){
       try {
-          var json = await axios.post(`http://localhost:3001/recipes/create`, payload)
+          var json = await axios.post(`/recipes/create`, payload)
           return json
       } catch (error) {
           console.log(error)
