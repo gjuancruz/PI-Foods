@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { filterByDiet, getAllDietsAct, getAllRecipesAct, orderByHealthScore, orderByTitle } from '../../redux/actions';
+import { filterByDCreated, filterByDiet, getAllDietsAct, getAllRecipesAct, orderByHealthScore, orderByTitle } from '../../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import RecipeCards from '../RecipeCards/RecipeCards';
 import { Link } from "react-router-dom"
@@ -48,6 +48,12 @@ function handleDietFilter(e){
     setPage(1)
 }
 
+function handleCreatedFilter(e){
+    e.preventDefault(e)
+    console.log(e.target.value)
+    dispatch(filterByDCreated(e.target.value))
+}
+
 function notFound(){
     return <h1>aa</h1>
 }
@@ -72,6 +78,10 @@ return(
                         <option value=''>Filter by diet type</option>
                     {diets && diets.map(d=>
                         <option key={d.id} value={d.diets}>{d.diets}</option>)}
+                    </select>
+                    <select onChange={(e) => handleCreatedFilter(e)}>
+                        <option value=''>Filter by created</option>
+                        <option value='created'>Created recipes</option>
                     </select>
         </div>
         <div>

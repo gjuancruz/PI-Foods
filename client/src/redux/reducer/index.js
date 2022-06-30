@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, SEARCH_RECIPES, GET_ALL_DIETS, SEARCH_RECIPES_ID, ORDER_BY_TITLE, ORDER_BY_HEALTHSCORE, FILTER_BY_DIETS} from "../actions";
+import { GET_ALL_RECIPES, SEARCH_RECIPES, GET_ALL_DIETS, SEARCH_RECIPES_ID, ORDER_BY_TITLE, ORDER_BY_HEALTHSCORE, FILTER_BY_DIETS, FILTER_BY_CREATED} from "../actions";
 
 const initialState = {
     recipes: [],
@@ -117,7 +117,17 @@ const initialState = {
             ...state,
             recipes: filter
         }
-
+        
+        case FILTER_BY_CREATED:
+          const createdrecipes = state.recipescopy
+          const filtercreated = action.payload === '' ? createdrecipes : 
+          createdrecipes.filter(recipe=>
+            recipe.id.length > 7
+          )
+          return{
+            ...state,
+            recipes:filtercreated
+          }
        
         default: return state
       }

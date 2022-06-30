@@ -7,6 +7,8 @@ export const ORDER_BY_TITLE = 'ORDER_BY_TITLE'
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE'
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
 export const DELETE_RECIPE = 'DELETE_RECIPE'
+export const FILTER_BY_CREATED = 'FILTER_BY_CREATED'
+
 
 export function getAllRecipesAct(){
     return async function (dispatch) {
@@ -83,6 +85,13 @@ export function orderByHealthScore(payload){
 export function filterByDiet(payload){ 
   return {
       type: FILTER_BY_DIETS,
+      payload
+  }
+}
+
+export function filterByDCreated(payload){ 
+  return {
+      type: FILTER_BY_CREATED,
       payload
   }
 }
