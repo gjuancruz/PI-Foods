@@ -19,7 +19,7 @@ const RecipePage = ()=>{
 
     const recipes = useSelector(state=> state.recipes)
     const diets = useSelector(state=> state.diets)
-
+    let notfound = useSelector(state=> state.notfound)
     // PAGINATION //
     const [page, setPage] = useState(1)
     const [perPage, setPerPage] = useState(9)
@@ -54,10 +54,20 @@ function handleCreatedFilter(e){
     dispatch(filterByDCreated(e.target.value))
 }
 
-function notFound(){
-    return <h1>aa</h1>
-}
+// function notFound(){
+//     setTimeout(() => {
+//         return false
+//     }, 5000);
+// }
+// let checked = notFound()
+// let checked = true
+// function chekecheka(){setTimeout(() => {
+//     checked = false
+// }, 5000);
+// }
 
+// chekecheka()
+// console.log(checked)
 return(
     <div >
         
@@ -101,7 +111,11 @@ return(
         <div>
             <Paginacion page={page} setPage={setPage} maxrecipes = {maxrecipes} recipeslength = {recipeslength} perPage={perPage}/>
         </div>
-        {!recipes.length && <h1>Not found</h1>}
+        <div className={styles.loaderdiv}>
+        {!recipes.length && notfound === false && <img className={styles.loader} src='https://media2.giphy.com/media/d2Sor6kd4bug3J3Srk/giphy.gif?cid=790b7611fb7e7c19372fba82d7a419e9fbe8e947d7fe1918&rid=giphy.gif&ct=s'/>}
+        {!recipes.length && notfound === false && <h1>Loading...</h1>}
+        {notfound === true && <h1>Not found</h1>}
+        </div>
     </div>
     )
 }

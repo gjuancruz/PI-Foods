@@ -4,7 +4,8 @@ const initialState = {
     recipes: [],
     recipescopy: [],
     diets:[],
-    recipedetail: []
+    recipedetail: [],
+    notfound: false
   };
 
   const rootReducer = (state = initialState, action) =>{
@@ -17,9 +18,17 @@ const initialState = {
             }
 
         case SEARCH_RECIPES:
+          if(!action.payload.length){
             return{
               ...state,
-              recipes: action.payload
+              notfound:true,
+              recipes: []
+            }
+          }
+          return{
+              ...state,
+              recipes: action.payload,
+              notfound:false
             }
 
         case GET_ALL_DIETS:

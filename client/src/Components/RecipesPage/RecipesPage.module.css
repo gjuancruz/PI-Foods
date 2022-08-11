@@ -18,3 +18,15 @@
 .error{
     color: aliceblue
 }
+
+.loader{
+    display:flex;
+    width:150px;
+}
+
+.loaderdiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
