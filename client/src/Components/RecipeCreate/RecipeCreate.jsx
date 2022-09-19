@@ -159,7 +159,8 @@ const CreateRecipe = ()=>{
     }
 
     return(
-        <form className={styles.container} >
+        <div className={styles.container}>
+        <form className={styles.form} >
             <h1>Create your own recipe.</h1>
         <div>
             <label className={styles.labeltitles}>Recipe name:</label>
@@ -224,6 +225,7 @@ const CreateRecipe = ()=>{
         <button type="submit" onClick={(e) => handleSubmit(e)}>Create Recipe</button>
             
       </form>
+      </div>
     )
 }
 
