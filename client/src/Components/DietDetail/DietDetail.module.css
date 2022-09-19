@@ -1,3 +1,10 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .box{
     display: flex;
     justify-content: center;
@@ -9,8 +16,7 @@
   border-radius: 5%;
   border-color: black;
   width: 80%;
-margin-bottom: 5%;
+
 box-shadow: 3px 2px 60px 25px;
 margin-top: 5%;
-margin-left: 10%;
 }
